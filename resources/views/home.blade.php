@@ -23,7 +23,50 @@
     </div>
     <button type="submit" class="btn btn-primary">Upload CSV</button>
 </form>
-<a href="#" class="btn btn-success">Download PDF</a>
+<a href="#" class="btn btn-success mb-5">Download PDF</a>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ticket Type</th>
+        <th>Node</th>
+        <th>Created At</th>
+        <th>Session ID</th>
+        <th>Success</th>
+        <th>CDR apn</th>
+        <th>Location Network</th>
+        <th>Feature</th>
+        <th>Account Status</th>
+        <th>Subscriber IMSI</th>
+        <th>Tariff ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if(isset($tickets))
+        @foreach($tickets as $ticket)
+            <tr>
+                <td>{{ $ticket->id }}</td>
+                <td>{{ $ticket->ticket_type_enum?->desciption() ?? '-' }}</td>
+                <td>{{ $ticket->node }}</td>
+                <td>{{ $ticket->ticketCreationTimestamp }}</td>
+                <td>{{ $ticket->sessionId }}</td>
+                <td>{{ $ticket->success ? 'Yes' : 'No' }}</td>
+                <td>{{ $ticket->crceCdrs->apn ?? '-' }}</td>
+                <td>{{ $ticket->crceCdrs->locationNetwork ?? '-' }}</td>
+                <td>{{ $ticket->crceCdrs->feature ?? '-' }}</td>
+                <td>{{ $ticket->crceConfs->accountStatus ?? '-' }}</td>
+                <td>{{ $ticket->crceConfs->subscriberImsi ?? '-' }}</td>
+                <td>{{ $ticket->crceConfs->tariffId ?? '-' }}</td>
+            </tr>
+        @endforeach
+    @endif
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center mt-3">
+    {{ $tickets->links('pagination::bootstrap-5') }}
+</div>
 
 </body>
 </html>

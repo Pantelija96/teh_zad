@@ -20,13 +20,18 @@ class TicketHeader extends Model
         'session_creation_timestamp' => 'datetime',
     ];
 
+    public function getTicketTypeEnumAttribute(): ?TicketTypeId
+    {
+        return TicketTypeId::tryFrom($this->ticketTypeId);
+    }
+
     public function crceConfs()
     {
-        return $this->hasOne(CRCEConf::class);
+        return $this->hasOne(CRCEConf::class, 'ticketHeaderId');
     }
 
     public function crceCdrs()
     {
-        return $this->hasOne(CRCECdr::class);
+        return $this->hasOne(CRCECdr::class, 'ticketHeaderId');
     }
 }
