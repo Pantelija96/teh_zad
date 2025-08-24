@@ -11,19 +11,22 @@
 
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+        <?php echo(session('success'))?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 
-<form action="{{route('uploadcsv')}}" method="POST" enctype="multipart/form-data" class="mb-4">
+<form action="{{route('upload.csv')}}" method="POST" enctype="multipart/form-data" class="mb-4">
     @csrf
     <div class="mb-3">
         <input type="file" name="csv_file" class="form-control" required>
     </div>
     <button type="submit" class="btn btn-primary">Upload CSV</button>
 </form>
-<a href="#" class="btn btn-success mb-5">Download PDF</a>
+<form action="{{ route('export.pdf') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-success">Export PDF</button>
+</form>
 
 <table class="table table-striped table-bordered">
     <thead>
