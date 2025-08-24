@@ -64,7 +64,7 @@ return new class extends Migration
             $table->bigInteger('ratingFilterId')->nullable();
             $table->string('revenueCode', 128)->nullable();
             $table->text('transparentData')->nullable();
-            $table->json('additionalRatingInformation')->nullable();
+            $table->longText('additionalRatingInformation')->nullable();
 
             $table->timestamps();
         });

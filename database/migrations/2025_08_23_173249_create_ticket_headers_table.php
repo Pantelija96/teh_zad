@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('application', 32);
             $table->string('ticketType', 32);
             $table->string('node', 64);
-            $table->timestampTz('ticketCreationTimestamp');
-            $table->timestampTz('sessionCreationTimestamp');
+            $table->timestampTz('ticketCreationTimestamp')->nullable();
+            $table->timestampTz('sessionCreationTimestamp')->nullable();
             $table->string('sessionId', 128);
             $table->string('transactionId', 128)->nullable();
             $table->integer('sequenceId')->nullable();
