@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Tickets PDF</title>
@@ -21,9 +21,6 @@
         <th>Created At</th>
         <th>Session ID</th>
         <th>Success</th>
-        <th>CDR Feature</th>
-        <th>Traffic Type</th>
-        <th>Subscriber IMSI</th>
     </tr>
     </thead>
     <tbody>
@@ -35,9 +32,6 @@
             <td>{{ $ticket->ticketCreationTimestamp }}</td>
             <td>{{ $ticket->sessionId }}</td>
             <td>{{ $ticket->success ? 'Yes' : 'No' }}</td>
-            <td>{{ $ticket->cdr->feature ?? '-' }}</td>
-            <td>{{ $ticket->cdr_traffic_enum?->description() ?? '-' }}</td>
-            <td>{{ $ticket->cdr->subscriberImsi ?? '-' }}</td>
         </tr>
     @endforeach
     </tbody>
